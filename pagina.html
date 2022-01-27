@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0">
+
+    <link rel="shortcut icon" href="img/rtaImage.png" />
+    <title>Airport Shuttler Transportation</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbkV9FFXMySB7oOO1CfqoD-503Xw_YlhM"></script>  
+
+
+
+
+</head>
+<body onload="limpiarformulariomapa()" background="img/client7.jpg">
+    <!-- barra de navegación -->
+    <div class="container">        
+        <nav class="navbar navbar-expand-lg navbar-light bg-light card2">
+            <a class="navbar-brand" href="index.html" style="color:#FFFFFF;">
+                <img src="img/logo2.png" width="170">
+                Home             
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link disabled" href="services.html" style="color:#FFFFFF;">Services</a>                     
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link disabled" href="contacts.html" style="color:#FFFFFF;">Contacts</a>                      
+                    </li>                    
+                    <li class="nav-item active">
+                        <a class="nav-link disabled" href="aboutus.html" style="color:#FFFFFF;">About Us</a>
+                    </li>
+                </ul>
+                <div class="d-flex justify-content-center links card2">
+					<a href="index.html" class="r" onclick="logout()">Logout.</a>
+				</div>	
+            </div>
+        </nav>
+        <h2 class="navigator">You can choose the destination where you want to travel.</h2>
+        
+    </div>
+       
+    <div class="form-group col-12">
+            <hr>
+    </div>
+   <!-- mapa -->
+    <div class="container-fluid">
+        <section class="main row" >
+            
+            <div class="input-group col-xs-12 col-mb-3 input-group-lg "id="mapa" style="width: 630px;height: 550px;">
+                --ACA VA NUESTRO MAPA--
+            </div> 
+            <div class="col-xs-12 col-md-3 offset-md-0.5">
+            <form>                
+                <div class="input-group col-xs-12 col-sm-12 col-mb-7 input-group-lg">
+                	<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="shared1" name="defaultExampleRadios" checked onclick="trazar_ruta('Port of Everglades,Florida')">
+  						<label class="custom-control-label" for="shared1">Port of Everglades, Florida</label>
+					</div>
+                	<!-- Default checked checked-->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="shared2" name="defaultExampleRadios" onclick="trazar_ruta('Port of Miami,Florida')">
+  						<label class="custom-control-label" for="shared2">Port of Miami, Florida</label>
+					</div>					
+                	<!-- Default unchecked -->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="shared3" name="defaultExampleRadios" onclick=" trazar_ruta('Miami Beach,Florida') ">
+  						<label class="custom-control-label" for="shared3">Miami Beach, Florida</label>
+					</div>
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="shared4" name="defaultExampleRadios" onclick="trazar_ruta('South Beach,Florida')">
+  						<label class="custom-control-label" for="shared4">South Beach, Florida</label>
+					</div>
+                	<!-- Default checked checked-->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="shared5" name="defaultExampleRadios" onclick="trazar_ruta('Port Canaveral, Florida')">
+  						<label class="custom-control-label" for="shared5">Port Canaveral,Florida</label>
+					</div>					
+                	<!-- Default unchecked -->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="shared6" name="defaultExampleRadios" onclick=" trazar_ruta('Disney Kissimmee, Florida')">
+  						<label class="custom-control-label" for="shared6">Disney Kissimmee,Florida</label>
+					</div>
+
+
+
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="shared7" name="defaultExampleRadios" onclick=" trazar_ruta('Sunrice FL,Florida')">
+  						<label class="custom-control-label" for="shared7">Sunrice, Florida</label>
+					</div>
+
+
+
+
+
+
+
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV1" name="defaultExampleRadios" onclick="trazar_ruta('Weston,Florida')">
+  						<label class="custom-control-label" for="SUV1">Weston, Florida</label>
+					</div>
+                	<!-- Default checked checked-->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV2" name="defaultExampleRadios" onclick="trazar_ruta('Fort Lauderdale,Florida')">
+  						<label class="custom-control-label" for="SUV2">Fort Lauderdale, Florida</label>
+					</div>					
+                	<!-- Default unchecked -->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV3" name="defaultExampleRadios" onclick=" trazar_ruta('Boca Raton West, Florida') ">
+  						<label class="custom-control-label" for="SUV3">Boca Raton West, Florida</label>
+					</div>
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV4" name="defaultExampleRadios" onclick="trazar_ruta('Miramar, Florida')">
+  						<label class="custom-control-label" for="SUV4">Miramar, Florida</label>
+					</div>
+                	<!-- Default checked checked-->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV5" name="defaultExampleRadios" onclick="trazar_ruta('Pompano Beach, Florida')">
+  						<label class="custom-control-label" for="SUV5">Pompano Beach, Florida</label>
+					</div>					
+                	<!-- Default unchecked -->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV6" name="defaultExampleRadios" onclick=" trazar_ruta('Lauderdale By the Sea, Florida')">
+  						<label class="custom-control-label" for="SUV6">Lauderdale By the Sea</label>
+					</div>
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV7" name="defaultExampleRadios" onclick="trazar_ruta('Hollywood Beach, Florida')">
+  						<label class="custom-control-label" for="SUV7">Hollywood Beach, FL</label>
+					</div>
+                	<!-- Default checked checked-->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV8" name="defaultExampleRadios" onclick="trazar_ruta('Sunny Isles, Florida')">
+  						<label class="custom-control-label" for="SUV8">Sunny Isles, FL</label>
+					</div>					
+                	<!-- Default unchecked -->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV9" name="defaultExampleRadios" onclick=" trazar_ruta('Hallandale Beach, Florida')">
+  						<label class="custom-control-label" for="SUV9">Hallandale Beach, FL</label>
+					</div>
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV10" name="defaultExampleRadios" onclick="trazar_ruta('Coral Springs, Florida')">
+  						<label class="custom-control-label" for="SUV10">Coral Springs, Florida</label>
+					</div>
+                	<!-- Default checked checked-->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV11" name="defaultExampleRadios" onclick="trazar_ruta('Bal Harbour, Florida')">
+  						<label class="custom-control-label" for="SUV11">Bal Harbour, Florida</label>
+					</div>					
+                	<!-- Default unchecked -->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV12" name="defaultExampleRadios" onclick=" trazar_ruta('Delray Beach, Florida')">
+  						<label class="custom-control-label" for="SUV12">Delray Beach, Florida</label>
+					</div>
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV13" name="defaultExampleRadios" onclick="trazar_ruta('Boyton Beach, Florida')">
+  						<label class="custom-control-label" for="SUV13">Boyton Beach, FL</label>
+					</div>
+                	<!-- Default checked checked-->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV14" name="defaultExampleRadios" onclick="trazar_ruta('Palm Beach International Airoport')">
+  						<label class="custom-control-label" for="SUV14">Palm Beach Int. Airoport</label>
+					</div>					
+                	<!-- Default unchecked -->
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV15" name="defaultExampleRadios" onclick=" trazar_ruta('Deerfiel Beach, Florida')">
+  						<label class="custom-control-label" for="SUV15">Deerfiel Beach, Florida</label>
+					</div>
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV16" name="defaultExampleRadios" onclick=" trazar_ruta('Doral, Florida')">
+  						<label class="custom-control-label" for="SUV16">Doral, Florida</label>
+					</div>
+					<div class="custom-control custom-radio">
+  						<input type="radio" class="custom-control-input" id="SUV17" name="defaultExampleRadios" onclick=" trazar_ruta('Miami Springs, Florida')">
+  						<label class="custom-control-label" for="SUV17">Miami Springs, Florida</label>
+					</div>
+					                 
+                </div>
+                
+            </form>
+            </div>
+            <div class="col-xs-12 col-md-3 offset-md-0.5">
+            <form id="form2">                
+                <div class="input-group col-xs-12 col-mb-7 input-group-lg">
+                	<div class="form-group">
+						<select class="selectpicker">
+						    <option data-hidden="true" onclick=" shared(true)">123Shuttle(Shared)</option>
+						    <option onclick=" shared(false)">SUV(Private)</option>						    
+						</select>
+					</div> 
+                    <div class="form-group">
+                        <label for="address">Pickup Address:</label>
+                        <input type="address" value="Fort Lauderdale, Florida" class="form-control" id="address1" disabled>                   
+                    </div>                  
+                </div>
+                <div class="input-group col-xs-12 col-mb-5 input-group-lg">
+                    <div class="form-group">
+                        <label for="address">Destination Address:</label>
+                        <input type="address" class="form-control" id="address2" disabled>                   
+                    </div>                  
+                </div>
+                <div class="input-group col-xs-12 col-mb-5 input-group-lg">
+                    <div class="form-group">
+                        <label for="address">Pickup Date:</label>
+                        <input type="date" class="form-control" id="date">                   
+                    </div>                  
+                </div>
+                <div class="input-group col-xs-12 col-mb-5 input-group-lg">
+                    <div class="form-group">
+                        <label for="address">Pickup Time:</label>
+                        <input type="time" class="form-control" id="time">                   
+                    </div>                  
+                </div>
+                <div class="input-group col-xs-12 col-mb-5 input-group-lg">
+                    <div class="form-group">
+                        <label for="Number">Amount of People:</label>
+                        <input type="Number" class="form-control" id="number">                  
+                    </div>                  
+                </div>                 
+
+				<div class="alert alert-danger" id="success-alert" style="display: none">
+				    <a id="a-alert" class="close" data-dismiss="alert">&times;</a>
+				    ___________________
+				</div>             
+                <div>
+                    <button class="btn btn-success" id="botonform" onclick="return orderNow()"><img src='img/carrito.png' width='25'alt='x' id='idbutoncarrito'/> Add To The List</button>
+                </div>
+            </form>
+            </div>  
+                      
+        </section>
+    </div> 
+    <div class="form-group col-12">
+            <hr>
+    </div>
+    <!--<div class="input-group col-xs-12 col-mb-5 input-group-lg">
+                    <img src="img/ideadeari.jpg" width="100%">          
+                </div>  -->
+    <!-- Carrucel y tabla -->
+    <div class="container-fluid">
+        <section class="main row" >          
+             
+            <!-- tabla -->
+    		<div class="col-xs-12 col-md-12">        
+        		<h2 class="title2">Your Reservations</h2>
+        		<!--<p class="title">Here you can see and delete your reservations:</p>-->
+        		<div class="alert alert-info" id="success-alert2" style="display: none">
+					<a id="a1-alert" class="close" data-dismiss="alert">&times;</a>
+					-
+				</div>             
+        		<table class="table table-borderless table-responsive text-centered" id="idtabla">
+            		<thead>
+                		<tr>
+	                		<th scope="col">Payment</th>
+    	            		<th scope="col">Remove Order</th>
+        	            	<th scope="col">Pickup Address</th>
+            	        	<th scope="col">Destination Address</th>
+                	    	<th scope="col">Pickup Date</th>
+                    		<th scope="col">Pickup Time</th>
+                    		<th scope="col">Amount of People</th>
+                    		<th scope="col">Distance (km)</th>
+                		</tr>
+            		</thead>
+            		<tbody>
+                		     
+            		</tbody>
+        		</table>  
+    		</div>
+    		<div id="carouselExampleControls" class="carousel slide col-xs-12 col-md-4" data-ride="carousel">
+	                <div class="carousel-inner">
+	                    <div class="carousel-item active">
+	                        <img id="img1"class="d-block w-100 img-fluid" src="img/publicidad3.jpg" alt="First slide">
+	                    </div>
+	                    <div class="carousel-item">
+	                        <img class="d-block w-100 img-fluid" src="img/publicidad1.jpg" alt="Second slide">
+	                    </div>
+	                    <div class="carousel-item">
+	                        <img class="d-block w-100 img-fluid" src="img/publicidad2.jpg" alt="Third slide">
+	                    </div>
+	                </div>
+	                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+	                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	                    <span class="sr-only">Previous</span>
+	                </a>
+	                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+	                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	                    <span class="sr-only">Next</span>
+	                </a>
+	        </div>	
+	        <div id="carouselExampleControls2" class="carousel slide col-xs-12 col-md-4" data-ride="carousel">
+	                <div class="carousel-inner">
+	                    <div class="carousel-item active">
+	                        <img id="img1"class="d-block w-100 img-fluid" src="img/publicidad4.jpg" alt="First slide">
+	                    </div>
+	                    <div class="carousel-item">
+	                        <img class="d-block w-100 img-fluid" src="img/publicidad5.jpg" alt="Second slide">
+	                    </div>
+	                    <div class="carousel-item">
+	                        <img class="d-block w-100 img-fluid" src="img/publicidad6.jpg" alt="Third slide">
+	                    </div>
+	                </div>
+	                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+	                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	                    <span class="sr-only">Previous</span>
+	                </a>
+	                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+	                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	                    <span class="sr-only">Next</span>
+	                </a>
+	        </div>
+	        <div id="carouselExampleControls2" class="carousel slide col-xs-12 col-md-4" data-ride="carousel">
+	                <div class="carousel-inner">
+	                    <div class="carousel-item active">
+	                        <img id="img1"class="d-block w-100 img-fluid" src="img/publicidad6.jpg" alt="First slide">
+	                    </div>
+	                    <div class="carousel-item">
+	                        <img class="d-block w-100 img-fluid" src="img/publicidad1.jpg" alt="Second slide">
+	                    </div>
+	                    <div class="carousel-item">
+	                        <img class="d-block w-100 img-fluid" src="img/publicidad4.jpg" alt="Third slide">
+	                    </div>
+	                </div>
+	                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+	                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	                    <span class="sr-only">Previous</span>
+	                </a>
+	                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+	                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	                    <span class="sr-only">Next</span>
+	                </a>
+	        </div>
+    
+    <script type="text/javascript">
+
+        shared(true);
+        mostrar_mapa();
+        //trazar_ruta();
+        var map;
+        var marker1;
+        var marker2;
+        var origen;
+        var destino;
+        function mostrar_mapa()
+        {
+            // Creamos un objeto mapa y especificamos el elemento DOM donde se va a mostrar.
+            map = new google.maps.Map(document.getElementById('mapa'), {
+                //center: {lat: 23.1165, lng: -82.3882}, //centre mi mapa en la Habana
+                center: {lat: 25.7751, lng: -80.210525}, 
+                scrollwheel: true,
+                zoom: 10,
+                zoomControl: true,
+                rotateControl : false,
+                mapTypeControl: true,
+                streetViewControl: false,
+            });
+            document.getElementById("address1").value="Fort Lauderdale, Florida";
+            
+            return false;//para que no se recargue la pagina el ejecutar el boton
+        }    
+        function trazar_ruta(destino)
+        {   
+            $('#address1').visible = false;
+            document.getElementById("address2").value = destino;
+            origen="Fort Lauderdale, Florida, EE.UU."; 
+            destino=destino;
+            //alert(origen);
+            //alert(destino); 	
+            // Creamos un objeto mapa y especificamos el elemento DOM donde se va a mostrar.
+            map = new google.maps.Map(document.getElementById('mapa'), {
+                center: {lat: 25.7751, lng: -80.210525},
+                scrollwheel: true,
+                zoom: 10,
+                zoomControl: true,
+                rotateControl : false,
+                mapTypeControl: true,
+                streetViewControl: false,
+            });
+            var objConfDR={
+                map:map
+            }
+            var objConfDS={
+                //origin:'Coopelia, Habana',
+                //origin:'Versalles, Matanzas',
+                //destination:'Alamar,Habana del Este, Habana',
+                origin:origen,
+                destination:destino,
+                travelMode:google.maps.TravelMode.DRIVING
+            } 
+            serviceDisplay = new google.maps.DirectionsService();
+            directionsDisplay = new google.maps.DirectionsRenderer(objConfDR);
+
+            serviceDisplay.route(objConfDS,fnRutear);
+
+            function fnRutear(resultados,status){
+                if(status=='OK'){
+                    directionsDisplay.setDirections(resultados);
+                }else{
+                alert('error '+status);
+                }    
+            }
+            
+            return false;//para que no se recargue la pagina el ejecutar el boton 
+        }
+            
+        var letras="abcdefghyjklmnñopqrstuvwxyz";
+
+		function tiene_letras(texto)
+		{   
+   			texto = texto.toLowerCase();
+   			for(i=0; i<texto.length; i++)
+   			{
+      			if (letras.indexOf(texto.charAt(i),0)!=-1)
+      			{
+         		return 1;
+      			}
+   			}
+   		return 0;
+		}  
+		function orderNow()
+        {      
+        	var x = document.getElementById("success-alert");  
+             
+            var address1 = $('#address1').val();
+    		var address2 = $('#address2').val();
+    		var date = $('#date').val();
+    		var time = $('#time').val();  		
+    		var number = $('#number').val();
+
+    		if(address2!='')
+    		{
+    			if(date!='')
+    			{
+    				if(time!='')
+    				{
+    					if(number!='')
+    					{   
+    						var tipo=' 1';
+    						if(document.getElementById("shared7").disabled == true)
+    							 tipo=' 2';
+    						x.style.display = "none";
+    						$.ajax({
+				            		type:'POST',
+				            		url:'reservation.php',
+				            		data:'contactreservation=1&address1='+address1+'&tipo='+tipo+'&address2='+address2+'&date='+date+'&time='+time+'&number='+number,
+				            		/*beforeSend: function () 
+				            		{
+				                		$('.submitBtn').attr("disabled","disabled");
+				                		$('.modal-body').css('opacity', '.5');
+				            		},*/
+				            		success:function(msg)
+				            		{            			
+				                		if(msg == 'ok')
+				                		{
+				                   		 	//$('#address1').val('');
+				                    		$('#address2').val('');
+				                    		$('#date').val('');
+				                    		$('#time').val('');
+				                    		$('#number').val('');
+				                    		insertarcolumna();
+				                   			//$('.statusMsg').html('<span style="color:green;">Thanks for contacting us, we will get back to you soon.</p>');
+				                		}else
+				                		{
+				                    		$('.statusMsg').html('<span style="color:red;" width:350px;>Some problem occurred, please try again.</span>');
+				                    		document.getElementById("diverror").className = "error3";
+				                		}                		
+				            		}
+				        		});
+
+				            //trazar_ruta();  
+				            return false;
+    			
+    					}else
+    					{
+			    			document.getElementById("a-alert").innerText = 'Amount of People is required.';
+			    			x.style.display = "block";
+			    			setTimeout(function(){ x.style.display = "none"; },3000);
+							return false;
+							//alert('Destination is required.');
+			    		}	    			
+    				}else
+    				{
+		    			document.getElementById("a-alert").innerText = 'Pickup Time is required.';
+		    			x.style.display = "block";
+		    			setTimeout(function(){ x.style.display = "none"; },3000);
+						return false;
+						//alert('Destination is required.');
+		    		}      					 			
+    			}else
+    			{
+	    			document.getElementById("a-alert").innerText = 'Pickup Date is required.';
+	    			x.style.display = "block";
+	    			setTimeout(function(){ x.style.display = "none"; },3000);
+					return false;
+					//alert('Destination is required.');
+	    		}    				
+    		}else
+    		{
+    			document.getElementById("a-alert").innerText = 'Destination is required.';
+    			x.style.display = "block";
+    			setTimeout(function(){ x.style.display = "none"; },3000);
+				return false;
+				//alert('Destination is required.');
+    		}
+    			
+               
+    		return false;
+        }
+        var posicionCampo=1;
+        function insertarcolumna()
+		{  
+		    //$("#idtabla").remove();
+		    var Table = document.getElementById("idtabla"); 
+		    Table.innerHTML = "<thead><tr><th scope='col'>Remove</th><th scope='col'>Payment</th><th scope='col'>Price</th><th scope='col'>Destination Address</th><th scope='col'>Pickup Address</th><th scope='col'>Pickup Date</th><th scope='col'>Pickup Time</th><th scope='col'>Amount of People</th><th class='idborrar'scope='col'>ID</th><th scope='col'>Cliete's email</th><th scope='col'>Cliete's phone</th> </tr></thead>"; 
+		    var id;
+			var address1;
+    		var address2;
+    		var date;
+    		var time;
+    		var number;
+    		var distance;
+    		var price;
+    		array=new Array();
+			$.ajax({
+            		type:'POST',
+            		async:false,
+            		url:'llenartabla.php',            		
+            		success:function(data)
+            		{   
+            			//console.log(data);
+            		    var resultados = JSON.parse(data);       			
+                		//console.log(resultados);
+                		//console.log(resultados.length);
+                		/*address1 = resultados.address1;
+    					address2 = resultados.address2;
+    					date = resultados.data;
+    					time = resultados.time;  		
+    					number = resultados.number;
+    					distance = resultados.distance;  		
+    		            price = resultados.price;*/
+    		            for (var i = 0; i < resultados.length; i++) {
+    		            	array[i]=JSON.parse(resultados[i]);
+    		            }
+    		            //console.log(array);
+            		}
+        		});
+			var cont=0;
+			while(cont < array.length)
+			{		
+				var money;
+				if(array[cont].pay==1)
+				{
+					money='img/ok.png';
+				}else
+				{
+					money='img/money2.png';
+				}
+				//alert(array[cont].pay);
+
+				id  = array[cont].id;
+				address1 = array[cont].address1;
+				address2 = array[cont].address2;
+    			date = array[cont].data;
+    			time = array[cont].time;  		
+    			number = array[cont].number;
+    			distance = array[cont].distance;  		
+    		    price = array[cont].price;
+    		    pagar = array[cont].pay;
+    		    admin = array[cont].admin;
+    		    emailClient = array[cont].emailClient; 
+    		    phone = array[cont].phone;
+
+    		    cont++;
+				nuevaFila = document.getElementById("idtabla").insertRow(-1); 
+            	nuevaFila.id=posicionCampo;    
+                
+ 	           	nuevaCelda=nuevaFila.insertCell(-1);
+    	        nuevaCelda.innerHTML="<td><button class='btn btn-danger' onclick='SomeDeleteRowFunction(this)'><img src='img/delete.png' width='25'alt='x' id='idbutonpay'/></button></td>";
+        	    nuevaCelda=nuevaFila.insertCell(-1);
+            	nuevaCelda.innerHTML="<td><button class='btn btn-success' onclick='pay(this)'><img src="+money+" width='25'alt='x'/></button></td>";
+            	nuevaCelda=nuevaFila.insertCell(-1);
+    	        nuevaCelda.innerHTML="<td>"+price+"</td>";
+	            nuevaCelda=nuevaFila.insertCell(-1);
+    	        nuevaCelda.innerHTML="<td>"+address2+"</td>";
+        	    nuevaCelda=nuevaFila.insertCell(-1);
+            	nuevaCelda.innerHTML="<td>"+address1+"</td>";
+	            nuevaCelda=nuevaFila.insertCell(-1);
+    	        nuevaCelda.innerHTML="<td>"+date+"</td>";
+        	    nuevaCelda=nuevaFila.insertCell(-1);
+            	nuevaCelda.innerHTML="<td>"+time+"</td>";
+	            nuevaCelda=nuevaFila.insertCell(-1);
+    	        nuevaCelda.innerHTML="<td>"+number+"</td>";
+        	    nuevaCelda=nuevaFila.insertCell(-1);
+            	nuevaCelda.innerHTML="<td>"+distance+"</td>";
+            	nuevaCelda=nuevaFila.insertCell(-1);
+            	nuevaCelda.innerHTML="<td>"+id+"</td>";
+            	nuevaCelda=nuevaFila.insertCell(-1);
+            	nuevaCelda.innerHTML="<td>"+pagar+"</td>";
+            	//if(admin==1)
+            	//{
+	            	nuevaCelda=nuevaFila.insertCell(-1);
+	            	nuevaCelda.innerHTML="<td>"+emailClient+"</td>";
+	            	nuevaCelda=nuevaFila.insertCell(-1);
+	            	nuevaCelda.innerHTML="<td>"+phone+"</td>"; 			
+            	//}
+           		posicionCampo++;          		
+
+			}
+			$(".idborrar").toggle();
+			$('td:nth-child(9)').toggle();
+			$('td:nth-child(10)').toggle();
+			$('td:nth-child(11)').toggle();
+            return false;
+ 
+		}
+		function SomeDeleteRowFunction(o) {
+			//console.log(o.parentNode.parentNode.cells[8].firstChild.data);
+            var p=o.parentNode.parentNode.cells[9].firstChild.data;
+            
+        	$.ajax({
+            		type:'POST',            		
+            		url:'eliminarreservacion.php',  
+            		data:'eliminarreservacion=1&id='+p,          		
+            		success:function(msg)
+            		{     
+            			if(msg=='ok')
+            			{
+   							insertarcolumna();
+            			}else
+            			alert("ocurrio un error");            			
+            		}
+        		});
+    	}
+    	function pay(o) {			
+			var x = document.getElementById("success-alert2");  
+			var s=o.parentNode.parentNode.cells[10].firstChild.data;
+			if(s==1)
+			{	
+				document.getElementById("a1-alert").innerText = 'The payment was done.';
+	    		x.style.display = "block";
+	    		setTimeout(function(){ x.style.display = "none"; },3000);
+	    		//alert('The payment was done.');
+			}else
+			{
+				var id = o.parentNode.parentNode.cells[8].firstChild.data;
+			
+				var precio=o.parentNode.parentNode.cells[2].firstChild.data;	
+				var destin=o.parentNode.parentNode.cells[4].firstChild.data;		
+
+				var url = "pay.html?id=" + id+"&price="+precio+"&destino="+destin;
+				window.location = url;
+			}
+			
+			
+    	}
+		
+		function limpiarformulariomapa()
+		{
+			//$('#address1').val('');
+            $('#address2').val('');
+            $('#date').val('');
+            $('#time').val('');
+            $('#number').val('');
+            insertarcolumna()
+		}
+		function logout()
+		{
+			$.ajax({
+            		type:'POST',
+            		url:'logout.php',
+            		data:'logout'      		
+            		
+        		});
+		}	
+		function shared(shared)
+		{
+			if(shared)
+			{				
+				document.getElementById("shared7").disabled = false;
+				document.getElementById("SUV1").disabled = true;
+				document.getElementById("SUV2").disabled = true;
+				document.getElementById("SUV3").disabled = true;
+				document.getElementById("SUV4").disabled = true;
+				document.getElementById("SUV5").disabled = true;
+				document.getElementById("SUV6").disabled = true;
+				document.getElementById("SUV7").disabled = true;
+				document.getElementById("SUV8").disabled = true;
+				document.getElementById("SUV9").disabled = true;
+				document.getElementById("SUV10").disabled = true;
+				document.getElementById("SUV11").disabled = true;
+				document.getElementById("SUV12").disabled = true;
+				document.getElementById("SUV13").disabled = true;
+				document.getElementById("SUV14").disabled = true;
+				document.getElementById("SUV15").disabled = true;
+				document.getElementById("SUV16").disabled = true;
+				document.getElementById("SUV17").disabled = true;
+			}else
+			{
+				document.getElementById("shared7").disabled = true;
+				document.getElementById("SUV1").disabled = false;
+				document.getElementById("SUV2").disabled = false;
+				document.getElementById("SUV3").disabled = false;
+				document.getElementById("SUV4").disabled = false;
+				document.getElementById("SUV5").disabled = false;
+				document.getElementById("SUV6").disabled = false;
+				document.getElementById("SUV7").disabled = false;
+				document.getElementById("SUV8").disabled = false;
+				document.getElementById("SUV9").disabled = false;
+				document.getElementById("SUV10").disabled = false;
+				document.getElementById("SUV11").disabled = false;
+				document.getElementById("SUV12").disabled = false;
+				document.getElementById("SUV13").disabled = false;
+				document.getElementById("SUV14").disabled = false;
+				document.getElementById("SUV15").disabled = false;
+				document.getElementById("SUV16").disabled = false;
+				document.getElementById("SUV17").disabled = false;
+			}			
+
+		}
+    </script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+
+</html>
